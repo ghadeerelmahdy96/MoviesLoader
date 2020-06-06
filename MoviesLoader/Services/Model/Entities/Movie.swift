@@ -11,19 +11,19 @@ import Foundation
 
 // MARK: - Movie
 struct Movie: Codable {
-    var popularity: Double
-    var voteCount: Int
-    var video: Bool
-    var posterPath: String
-    var id: Int
-    var adult: Bool
-    var backdropPath: String
-    var originalLanguage: OriginalLanguage
-    var originalTitle: String
-    var genreIDS: [Int]
-    var title: String
-    var voteAverage: Double
-    var overview, releaseDate: String
+    var popularity: Double?=0.0
+    var voteCount: Int?=0
+    var video: Bool?=false
+    var posterPath: String?=""
+    var id: Int?=0
+    var adult: Bool?=false
+    var backdropPath: String?=""
+    var originalLanguage: String?=""
+    var originalTitle: String?=""
+    var genreIDS: [Int]?=[]
+    var title: String?=""
+    var voteAverage: Double?=0.0
+    var overview: String?="", releaseDate: String?=""
 
     enum CodingKeys: String, CodingKey {
         case popularity

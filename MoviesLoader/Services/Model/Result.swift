@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum Result<T, U: Error> {
+enum Result<T:Codable, U: Error> {
   case success(T)
   case failure(U)
 }

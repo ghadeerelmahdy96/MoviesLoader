@@ -7,6 +7,7 @@
 //
 
 import Foundation
+// MARK: - Data Response Error
 enum DataResponseError: Error {
   case network
   case decoding
@@ -20,3 +21,4 @@ enum DataResponseError: Error {
     }
   }
 }
+

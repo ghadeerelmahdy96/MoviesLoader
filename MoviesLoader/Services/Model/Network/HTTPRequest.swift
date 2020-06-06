@@ -8,37 +8,40 @@
 
 import Foundation
 import Alamofire
-
-func doPost <T: Codable, V: Codable>(url: String,object:T, _ completionHandler: @escaping(V)->(), _ errorHandler: @escaping (String)->()){
-    AF.request(url,method: .post,parameters: object,encoder: JSONParameterEncoder.default,requestModifier: { $0.timeoutInterval = 5 }).responseJSON{ (response) -> Void in
+//T : Passed object , V : Result object
+func doPost <T: Codable,V:Codable>(url: String,object:T,completion: @escaping (Result<V, DataResponseError>) -> Void){
+    AF.request(url,method: .post,parameters: object,encoder: JSONParameterEncoder.default,requestModifier: { $0.timeoutInterval = 5 }).responseJSON { (response) -> Void in
         switch response.result{
-                case .success( _):
+                case .success(_ ):
                     let jsonParser = JsonParser<V>()
                     if let parsedObject = jsonParser.parseObjectJson(jsonData: response.data!){
-                        completionHandler(parsedObject)
+                        completion(Result.success(parsedObject))
                     }else{
-                        errorHandler("JSON_PARSING_ERROR")
-                          print(".error")
+                        completion(Result.failure(DataResponseError.decoding))
                     }
-                    case.failure(let error):
-                        errorHandler("FETCH_DATA_ERROR_WITH_CODE" + " \(String(describing: error.responseCode))")
+                    case.failure(_):
+                        print("network error with status code \(String(describing: response.response?.statusCode))")
+                        completion(Result.failure(DataResponseError.network))
                 }
         }
 }
 
-func doGet <T: Codable>(url: String, _ completionHandler: @escaping(T)->(), _ errorHandler: @escaping (String)->()){
-    AF.request(url, requestModifier: { $0.timeoutInterval = 5 } ).validate()
+func doGet <T: Codable>(url: String,parameters : Parameters , page: Int ,completion: @escaping (Result<T, DataResponseError>) -> Void){
+    let parameters = ["page": "\(page)"].merging(parameters, uniquingKeysWith: +)
+    AF.request(url , parameters: parameters)
+        .validate()
         .response{(response) -> Void in
             switch response.result{
             case .success( _):
                 let jsonParser = JsonParser<T>()
                 if let parsedObject = jsonParser.parseObjectJson(jsonData: response.data!){
-                    completionHandler(parsedObject)
+                    completion(Result.success(parsedObject))
                 }else{
-                    errorHandler("JSON_PARSING_ERROR")
+                    completion(Result.failure(DataResponseError.decoding))
                 }
-          case.failure(let error):
-                    errorHandler("FETCH_DATA_ERROR" + " \(error.localizedDescription)")
+          case.failure(_):
+                 print("network error with status code \(String(describing: response.response?.statusCode))")
+                   completion(Result.failure(DataResponseError.network))
             }
     }
 }
