@@ -10,4 +10,5 @@ import Foundation
 protocol MoviesListViewProtocol {
      func onFetchFailed(with reason: String)
      func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
+     func showEmptyLocalData ()
 }

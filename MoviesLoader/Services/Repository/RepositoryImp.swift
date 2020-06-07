@@ -8,14 +8,22 @@
 
 import Foundation
 class RepositoryImp: RepositoryProtocol {
-    func getDataFromLocalDB<T>(batchSize: Int, completion: @escaping (Result<T, DataResponseError>) -> Void) where T : Codable{
-        
+    func getMoviesCountInLocalDB(completion: @escaping (Result<Int, LocalDataResponseError>) -> Void) {
+        let dataStore = CoreDataHandler.sharedInstance
+        dataStore.getMoviesCount(completion: completion)
     }
     
-    func postDataToLocalDB<T, V>(With entities: T, completion: @escaping (Result<V, DataResponseError>) -> Void) where T : Codable, V : Codable {
-        
+    //MARK:- Local DB
+    func getDataFromLocalDB(fetchLimit: Int,fetchOffeset :Int, completion: @escaping (Result<[Movie], LocalDataResponseError>) -> Void) {
+        let dataStore = CoreDataHandler.sharedInstance
+        dataStore.fetchData( fetchLimit: fetchLimit, fetchOffeset: fetchOffeset, completion: completion)
     }
     
+    func postDataToLocalDB(With entities: [Movie], completion: @escaping (Result<Bool, LocalDataResponseError>) -> Void){
+        let dataStore = CoreDataHandler.sharedInstance
+        dataStore.save(movies: entities, completion: completion)
+    }
+    //MARK:- Network
     func getDataFromAPI<T>(From url: String,parameters: Parameters ,page : Int,completion: @escaping (Result<T, DataResponseError>) -> Void) where T : Codable{
         doGet(url: url, parameters: parameters, page: page,completion: completion )
     }

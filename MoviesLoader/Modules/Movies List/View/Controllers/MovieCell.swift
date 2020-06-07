@@ -20,37 +20,36 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var activityIndicatorCell: UIActivityIndicatorView!
 //MARK:- cell setup
     override func prepareForReuse() {
-      super.prepareForReuse()
-      configure(with: .none)
+        super.prepareForReuse()
+        configure(with: .none)
     }
     
     override func awakeFromNib() {
-      super.awakeFromNib()
+        super.awakeFromNib()
         activityIndicatorCell.hidesWhenStopped = true
         activityIndicatorCell.color = ColorPalette.RWYellow
-       // self.makeCard(withBorder: true)
+        // self.makeCard(withBorder: true)
     }
     
     func configure(with movie: Movie?) {
-      if let movie = movie {
-        dataView.alpha = 1
-        movieTitle.text = movie.title
-        movieRate.text = "\(movie.voteAverage!)"
-        releaseDate.text = movie.releaseDate
-        var imageString = "movie.png"
-        if  let posterPath  = movie.posterPath {
-            imageString = API.IMAGE_BASE_URL + posterPath
-            let url = URL.init(string: imageString)
-            movieImage.kf.setImage(with: url)
-        }else {
-            movieImage.image = UIImage.init(named: imageString)
+        if let movie = movie {
+            dataView.alpha = 1
+            movieTitle.text = movie.title
+            movieRate.text = "\(movie.voteAverage!)"
+            releaseDate.text = movie.releaseDate
+            var imageString = "movie.png"
+            if  let posterPath  = movie.posterPath {
+                imageString = API.IMAGE_BASE_URL + posterPath
+                let url = URL.init(string: imageString)
+                movieImage.kf.setImage(with: url)
+            }else {
+                movieImage.image = UIImage.init(named: imageString)
+            }
+            activityIndicatorCell.stopAnimating()
+        } else {
+            dataView.alpha = 0
+            activityIndicatorCell.startAnimating()
         }
-      
-        activityIndicatorCell.stopAnimating()
-      } else {
-        dataView.alpha = 0
-        activityIndicatorCell.startAnimating()
-      }
     }
     
 }

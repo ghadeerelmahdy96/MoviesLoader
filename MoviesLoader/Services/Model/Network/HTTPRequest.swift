@@ -28,7 +28,7 @@ func doPost <T: Codable,V:Codable>(url: String,object:T,completion: @escaping (R
 
 func doGet <T: Codable>(url: String,parameters : Parameters , page: Int ,completion: @escaping (Result<T, DataResponseError>) -> Void){
     let parameters = ["page": "\(page)"].merging(parameters, uniquingKeysWith: +)
-    AF.request(url , parameters: parameters)
+    AF.request(url , parameters: parameters,requestModifier: { $0.timeoutInterval = 5 })
         .validate()
         .response{(response) -> Void in
             switch response.result{

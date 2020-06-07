@@ -34,8 +34,6 @@
 		E36EC58B248A94F90012849C /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC58A248A94F90012849C /* RepositoryProtocol.swift */; };
 		E36EC58D248A96480012849C /* RepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC58C248A96480012849C /* RepositoryImp.swift */; };
 		E36EC591248A99F00012849C /* MoviesListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC590248A99F00012849C /* MoviesListViewProtocol.swift */; };
-		E36EC595248AC0080012849C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC594248AC0080012849C /* BaseViewController.swift */; };
-		E36EC597248AC2AB0012849C /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36EC596248AC2AB0012849C /* NoInternetView.xib */; };
 		E36EC59B248AC5980012849C /* ReachabilityObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC59A248AC5980012849C /* ReachabilityObserverDelegate.swift */; };
 		E36EC59D248ACEDD0012849C /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC59C248ACEDD0012849C /* AlertDisplayer.swift */; };
 		E36EC59F248ADCDB0012849C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EC59E248ADCDB0012849C /* View.swift */; };
@@ -92,8 +90,6 @@
 		E36EC58A248A94F90012849C /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
 		E36EC58C248A96480012849C /* RepositoryImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryImp.swift; sourceTree = "<group>"; };
 		E36EC590248A99F00012849C /* MoviesListViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesListViewProtocol.swift; sourceTree = "<group>"; };
-		E36EC594248AC0080012849C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		E36EC596248AC2AB0012849C /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
 		E36EC59A248AC5980012849C /* ReachabilityObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityObserverDelegate.swift; sourceTree = "<group>"; };
 		E36EC59C248ACEDD0012849C /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
 		E36EC59E248ADCDB0012849C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -199,8 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				E36EC53124896F780012849C /* Main.storyboard */,
-				E36EC596248AC2AB0012849C /* NoInternetView.xib */,
-				E36EC594248AC0080012849C /* BaseViewController.swift */,
 				E36EC5532489726F0012849C /* Movie Details */,
 				E36EC552248972640012849C /* Movies List */,
 			);
@@ -236,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				E36EC569248978E90012849C /* Controllers */,
-				E36EC568248978E30012849C /* UI */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,13 +321,6 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		E36EC568248978E30012849C /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		E36EC569248978E90012849C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,11 +332,11 @@
 		E36EC56F24897A750012849C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E36EC59C248ACEDD0012849C /* AlertDisplayer.swift */,
 				E36EC57524897BB80012849C /* Constants */,
 				E36EC57024897A7D0012849C /* Extensions */,
 				E36EC55A248975C80012849C /* Model */,
 				E36EC55C248976990012849C /* Repository */,
-				E36EC59C248ACEDD0012849C /* AlertDisplayer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -467,7 +453,6 @@
 				E36EC53B24896F7C0012849C /* LaunchScreen.storyboard in Resources */,
 				E36EC53824896F7C0012849C /* Assets.xcassets in Resources */,
 				E36EC567248977840012849C /* MovieCell.xib in Resources */,
-				E36EC597248AC2AB0012849C /* NoInternetView.xib in Resources */,
 				E36EC53324896F780012849C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,7 +542,6 @@
 				E36EC5A8248BDCD80012849C /* MovieDetailsViewController.swift in Sources */,
 				E36EC56E248979850012849C /* MoviesListViewController.swift in Sources */,
 				E36EC52C24896F780012849C /* AppDelegate.swift in Sources */,
-				E36EC595248AC0080012849C /* BaseViewController.swift in Sources */,
 				E36EC57B248991580012849C /* Genre.swift in Sources */,
 				E36EC589248A94980012849C /* TableViewCell.swift in Sources */,
 				E36EC58D248A96480012849C /* RepositoryImp.swift in Sources */,

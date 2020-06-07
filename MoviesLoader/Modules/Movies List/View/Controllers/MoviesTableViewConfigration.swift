@@ -28,7 +28,7 @@ extension MoviesListViewController :  UITableViewDelegate , UITableViewDataSourc
      //MARK:- Table view Data source Prefetching
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
           if indexPaths.contains(where:  isLoadingCell) {
-            presenter.fetchMovies()
+                presenter?.fetchMovies()
           }
       }
       
