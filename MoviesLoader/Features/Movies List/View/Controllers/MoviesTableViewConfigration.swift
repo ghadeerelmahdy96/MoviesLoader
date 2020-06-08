@@ -9,11 +9,15 @@
 import UIKit
 
 extension MoviesListViewController :  UITableViewDelegate , UITableViewDataSource , UITableViewDataSourcePrefetching {
-
+ 
     
     //MARK:- Table view Data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.totalCount
+        var count = 0
+        if presenter != nil{
+            count = presenter.totalCount
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,6 +39,14 @@ extension MoviesListViewController :  UITableViewDelegate , UITableViewDataSourc
        //MARK:- Table view Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if !isLoadingCell(for: indexPath) {
+              self.showMovieDetails(movie: presenter.movie(at: indexPath.row))
+        }
+      
+
     }
 
 }

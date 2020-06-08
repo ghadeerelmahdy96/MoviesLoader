@@ -14,19 +14,19 @@ final class MoviesListPresenter {
     private var currentPage = 1
     private var total = 1
     private var totalPages = 1
-    var isDBCalled = false
     private var isFetchInProgress = false
     private let fetchLimit = 20
     private var repo : RepositoryProtocol
+    var isDBCalled = false
+   
     init(viewController : MoviesListViewProtocol) {
         self.viewControllor = viewController
         repo = RepositoryImp()
     }
     // total count for network or for database
     var totalCount: Int {
-        return total
-    }
-    
+             return total
+         }
     var currentCount: Int {
         return movies.count
     }

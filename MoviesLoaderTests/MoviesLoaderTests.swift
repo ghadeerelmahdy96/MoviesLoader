@@ -10,18 +10,38 @@ import XCTest
 @testable import MoviesLoader
 
 class MoviesLoaderTests: XCTestCase {
-
+  var moviesHandlerWithoutError:MockMoviesHandler?
+   var moviesHandlerWithError:MockMoviesHandler?
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        moviesHandlerWithError = MockMoviesHandler.init(shouldReturnError: true)
+        moviesHandlerWithoutError = MockMoviesHandler.init(shouldReturnError: false)
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    func testMoviesHandlerWithError()  {
+        moviesHandlerWithError?.loadDataFromURL() {movies, error in
+                         
+                     if error != nil {
+                             XCTFail()
+                         }else{
+                             XCTAssertEqual(movies?.count, 4, "Mocks Faild")
+                         }
+                     }
+    }
+    func testMoviesHandlerWithoutError()  {
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        moviesHandlerWithoutError?.loadDataFromURL() {movies, error in
+                  
+              if error != nil {
+                      XCTFail()
+                  }else{
+                      XCTAssertEqual(movies?.count, 4, "Mocks Faild")
+                  }
+              }
+       
     }
 
     func testPerformanceExample() {
@@ -32,3 +52,4 @@ class MoviesLoaderTests: XCTestCase {
     }
 
 }
+

@@ -29,7 +29,7 @@ func doPost <T: Codable,V:Codable>(url: String,object:T,completion: @escaping (R
 func doGet <T: Codable>(url: String,parameters : Parameters , page: Int ,completion: @escaping (Result<T, DataResponseError>) -> Void){
     let parameters = ["page": "\(page)"].merging(parameters, uniquingKeysWith: +)
     AF.request(url , parameters: parameters,requestModifier: { $0.timeoutInterval = 5 })
-        .validate()
+        .validate(statusCode: 200..<299)
         .response{(response) -> Void in
             switch response.result{
             case .success( _):
@@ -40,8 +40,8 @@ func doGet <T: Codable>(url: String,parameters : Parameters , page: Int ,complet
                     completion(Result.failure(DataResponseError.decoding))
                 }
           case.failure(_):
-                 print("network error with status code \(String(describing: response.response?.statusCode))")
                    completion(Result.failure(DataResponseError.network))
             }
+        
     }
 }

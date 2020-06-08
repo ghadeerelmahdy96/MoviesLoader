@@ -37,13 +37,11 @@ class MovieCell: UITableViewCell {
             movieTitle.text = movie.title
             movieRate.text = "\(movie.voteAverage!)"
             releaseDate.text = movie.releaseDate
-            var imageString = "movie.png"
-            if  let posterPath  = movie.posterPath {
-                imageString = API.IMAGE_BASE_URL + posterPath
-                let url = URL.init(string: imageString)
-                movieImage.kf.setImage(with: url)
+            if let posterPath = movie.posterPath
+            {
+                movieImage.setImageFromNetwork(posterPath: posterPath)
             }else {
-                movieImage.image = UIImage.init(named: imageString)
+                movieImage.image = UIImage.init(named: "movie.png")
             }
             activityIndicatorCell.stopAnimating()
         } else {
